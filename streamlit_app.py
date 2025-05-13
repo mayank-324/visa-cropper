@@ -140,8 +140,6 @@ ALL_SPECS = {
 st.title("📄 Visa & Passport Photo Generator")
 st.markdown("""
 Upload your photo, select the document type, and get a compliant photo in minutes!
-**Disclaimer:** This tool attempts to meet official guidelines, but always double-check requirements
-from official government sources. We are not responsible for rejected photos.
 """)
 
 uploaded_file = st.file_uploader("1. Upload Your Photo (Clear, frontal face recommended)", type=["jpg", "jpeg", "png"])
