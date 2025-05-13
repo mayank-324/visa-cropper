@@ -42,6 +42,77 @@ ALL_SPECS = {
         "auto_adjustments": {"lighting_method": "cv2_clahe"},
         "quality_checks": {"min_laplacian_variance": 90.0},
         "output_format": {"type": "JPEG", "quality": 90, "dpi": (300, 300)} # DPI is less critical for digital, but good to set
+    },
+    "Russian Federation Visa": {
+        "document_name": "Russian Federation Visa",
+        # Standard size is 35mm x 45mm. [5, 6, 17, 20, 21, 23, 24]
+        # Resolution: 600 DPI is often mentioned for good quality prints. [23, 24]
+        # 35mm @ 600 DPI = (35 / 25.4) * 600 = ~827 pixels
+        # 45mm @ 600 DPI = (45 / 25.4) * 600 = ~1063 pixels
+        "output_pixel_dims": {"width": 827, "height": 1063},
+        "background": {"type": "color", "color_rgb": (255, 255, 255), "allow_ai_background_removal": True}, # Plain white or light-colored. [5, 6, 17, 20, 21] White is safest.
+        "head_position": {
+            # Face should cover about 50% of the photo area. [5, 6]
+            # Some sources say head height 32-36mm or around 33mm for a 45mm photo height. [24, 22] This is ~71-80%. Let's aim for ~75%.
+            # Or 70-80% of image. [21]
+            # Top of head to top of photo: ~5mm. [23, 24] (5mm / 45mm = ~0.11)
+            "head_height_ratio": 0.73, # (Approx (33mm / 45mm))
+            "top_of_head_to_photo_top_ratio": 0.11 # (Approx (5mm / 45mm))
+        },
+        "auto_adjustments": {"lighting_method": "cv2_clahe"},
+        "quality_checks": {"min_laplacian_variance": 80.0},
+        "output_format": {"type": "JPEG", "quality": 95, "dpi": (600, 600)} # High quality print often implies 600 DPI.
+    },
+
+    "Japan Visa": {
+        "document_name": "Japan Visa",
+        # Commonly 45mm x 45mm. [2, 3, 10, 15, 16, 19, 26] Some mention 35x45mm also acceptable. [10] Let's go with 45x45mm as primary.
+        # Resolution: 300 DPI [2] or 600 DPI. [3, 15, 19, 26] Let's use 600 for better quality if possible.
+        # 45mm @ 600 DPI = (45 / 25.4) * 600 = ~1063 pixels
+        "output_pixel_dims": {"width": 1063, "height": 1063},
+        "background": {"type": "color", "color_rgb": (255, 255, 255), "allow_ai_background_removal": True}, # Plain white. [3, 16, 19, 26] Some sources say white or light gray [2, 10, 15]. White is safest.
+        "head_position": {
+            # Head height: ~27mm. [2, 3]
+            # Top of photo to top of hair: ~7.5mm. [2, 3]
+            # For a 45mm photo height:
+            # head_height_ratio = 27/45 = 0.60
+            # top_of_head_to_photo_top_ratio = 7.5/45 = ~0.167
+            # Some sources say face 70-80% of photo. [15, 16] 27mm in 45mm is 60%. This can vary by interpretation (face vs full head). Let's use the mm values.
+            "head_height_ratio": 0.60,
+            "top_of_head_to_photo_top_ratio": 0.16
+        },
+        "auto_adjustments": {"lighting_method": "cv2_clahe"},
+        "quality_checks": {"min_laplacian_variance": 80.0},
+        "output_format": {"type": "JPEG", "quality": 95, "dpi": (600, 600)}
+    },
+
+    "China Visa (Paper & Digital General)": {
+        "document_name": "China Visa",
+        # Paper Photo: 33mm width x 48mm height. [4, 7, 8, 9, 12, 14]
+        # Digital Photo: 354-420 pixels (width) x 472-560 pixels (height). [7, 9, 11, 14]
+        # Let's target the mid-range for digital or calculate from paper at a good DPI.
+        # 33mm @ 300 DPI = (33 / 25.4) * 300 = ~390 pixels
+        # 48mm @ 300 DPI = (48 / 25.4) * 300 = ~567 pixels (This is slightly outside the higher digital spec height, but often digital specs have ranges)
+        # Let's use the common digital target: Width: 390px (approx 33mm @ 300dpi), Height: 530px (mid-range of 472-560)
+        "output_pixel_dims": {"width": 390, "height": 530}, # Targeting common digital size.
+        "background": {"type": "color", "color_rgb": (255, 255, 255), "allow_ai_background_removal": True}, # Plain white or close to white. [4, 7, 8, 9, 12, 13, 14]
+        "head_position": {
+            # Head height (chin to crown): 28mm-33mm. [4, 7, 8, 9, 12] Let's aim for ~30.5mm.
+            # Head width: 15mm-22mm. [4, 7, 9, 12] (Not directly used for ratio, but good to know)
+            # Space from upper edge of image to crown of head: 3mm-5mm. [7, 9] Let's aim for ~4mm.
+            # For a 48mm photo height:
+            # head_height_ratio = 30.5 / 48 = ~0.635
+            # top_of_head_to_photo_top_ratio = 4 / 48 = ~0.083
+            # For a 530px photo height (our digital target):
+            # If physical top margin is 4mm in a 48mm photo, then in a 530px photo, the margin is (4/48)*530 = ~44px. Ratio: 44/530 = ~0.083
+            # If physical head height is 30.5mm in a 48mm photo, then in a 530px photo, head height is (30.5/48)*530 = ~337px. Ratio: 337/530 = ~0.635
+            "head_height_ratio": 0.635,
+            "top_of_head_to_photo_top_ratio": 0.083
+        },
+        "auto_adjustments": {"lighting_method": "cv2_clahe"},
+        "quality_checks": {"min_laplacian_variance": 70.0},
+        "output_format": {"type": "JPEG", "quality": 90, "dpi": (300, 300)}, # Digital photos often have file size limits (40KB-120KB JPEG [7, 8, 9, 11])
+        "file_size_kb_limits": {"min": 40, "max": 120} # Add this custom key if you implement file size check/compression
     }
 }
 
