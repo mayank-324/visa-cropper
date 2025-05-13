@@ -12,7 +12,15 @@ except ImportError:
              "Make sure it's in the same directory as streamlit_app.py.")
     def create_compliant_photo(*args, **kwargs):
         return False, "Processing function not available."
-    DEFAULT_SPECIFICATIONS = {"document_name": "Default (Unavailable)"}
+    DEFAULT_SPECIFICATIONS = {
+        "document_name": "Default (Unavailable - Import Failed)",
+        "output_pixel_dims": {"width": 0, "height": 0}, # Add dummy
+        "background": {"type": "color", "color_rgb": (0,0,0), "allow_ai_background_removal": False}, # Add dummy
+        "head_position": {"head_height_ratio": 0, "top_of_head_to_photo_top_ratio": 0}, # Add dummy
+        "auto_adjustments": {"lighting_method": "none"}, # Add dummy
+        "quality_checks": {"min_laplacian_variance": 0}, # Add dummy
+        "output_format": {"type": "JPEG", "quality": 0, "dpi": (0,0)} # Add dummy
+    }
 
 ALL_SPECS = {
     "Generic Visa (Default)": DEFAULT_SPECIFICATIONS,
