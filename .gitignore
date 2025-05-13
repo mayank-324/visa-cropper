@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.dist-info/
+*.egg
+venv/
+.venv/
+env/
+ENV/
+pip-freeze.txt
+pipenv.lock
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.pyc
+*.log
+
+# Streamlit
+.streamlit/
+
+# Temporary files from your app
+temp_uploads/
+*.jpg # If you don't want any jpgs committed (be careful with this one if you have sample inputs you DO want)
+*.png # Same as above for pngs
+
+# Specific output files (if you want to be more targeted)
+# compliant_*.jpg
+# processed_*.jpg
+# processed_output.jpg 
+# (adjust based on your actual output naming conventions if you test locally)
+
+# IDE specific
+.vscode/
+.idea/
+*.DS_Store
+
+# If you ever add secrets directly (bad practice, use Streamlit secrets manager)
+# secrets.toml 
