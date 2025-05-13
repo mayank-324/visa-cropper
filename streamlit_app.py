@@ -7,8 +7,8 @@ st.set_page_config(page_title="Visa Photo Generator", layout="centered")
 
 try:
     from visa_photo_processor import create_compliant_photo, DEFAULT_SPECIFICATIONS
-except ImportError:
-    st.error("Error: Could not import 'visa_photo_processor.py'. "
+except ImportError as e:
+    st.error("Error: Could not import 'visa_photo_processor.py'.Exception :- {e} "
              "Make sure it's in the same directory as streamlit_app.py.")
     def create_compliant_photo(*args, **kwargs):
         return False, "Processing function not available."
