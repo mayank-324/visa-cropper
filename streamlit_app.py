@@ -3,6 +3,8 @@ from PIL import Image
 import os
 import io
 
+st.set_page_config(page_title="Visa Photo Generator", layout="centered")
+
 try:
     from visa_photo_processor import create_compliant_photo, DEFAULT_SPECIFICATIONS
 except ImportError:
@@ -115,8 +117,6 @@ ALL_SPECS = {
         "file_size_kb_limits": {"min": 40, "max": 120} # Add this custom key if you implement file size check/compression
     }
 }
-
-st.set_page_config(page_title="Visa Photo Generator", layout="centered")
 
 st.title("📄 Visa & Passport Photo Generator")
 st.markdown("""
