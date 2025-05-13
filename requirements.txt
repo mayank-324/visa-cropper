@@ -3,7 +3,4 @@ Pillow
 numpy
 rembg
 streamlit
-# rembg depends on onnxruntime and other libraries,
-# which pip should install automatically.
-# If you face issues with onnxruntime, you might need to install a specific version:
 onnxruntime
