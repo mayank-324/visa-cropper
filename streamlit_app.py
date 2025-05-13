@@ -2,6 +2,7 @@ import streamlit as st
 from PIL import Image
 import os
 import io
+import sys
 
 st.set_page_config(page_title="Visa Photo Generator", layout="centered")
 
