@@ -137,7 +137,7 @@ ALL_SPECS = {
     }
 }
 
-st.title("📄 Visa & Passport Photo Generator")
+st.title("📄 Visa & Passport Photo Enhancer")
 st.markdown("""
 Upload your photo, select the document type, and get a compliant photo in minutes!
 """)
